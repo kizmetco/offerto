@@ -20,10 +20,10 @@
 	<![endif]-->
 
 	<!-- Favicon and Apple Touch Icons -->
-	<link rel="shortcut icon" href="./images/icons/favicon.ico">
-	<link rel="apple-touch-icon" href="./images/icons/apple-touch-icon.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="./images/icons/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="./images/icons/apple-touch-icon-114x114.png">
+	<link rel="shortcut icon" href="images/icons/favicon.ico">
+	<link rel="apple-touch-icon" href="images/icons/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/icons/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/icons/apple-touch-icon-114x114.png">
     
 </head>
 <body>
@@ -75,7 +75,7 @@
 					
 					<ul class="header-benefits">
                     	<li><i class="icon-ok"></i> U wil reclame maken voor uw website/produkt/dienst?</li>
-					    <li><i class="icon-ok"></i> Bij ons hoeft u enkel tekst en foto's aan te leveren</li>						
+			<li><i class="icon-ok"></i> Bij ons hoeft u enkel tekst en foto's aan te leveren</li>						
                         <li><i class="icon-ok"></i> Het volledige ontwerp en de verzending is in onze handen</li>
                         <li><i class="icon-ok"></i> Belgische en Nederlandse email-adressen</li>
                         <li><i class="icon-ok"></i> Uw emailcampagne verzendklaar binnen 48 uur</li>
@@ -119,7 +119,7 @@
 			<ul></ul>
             
             
-			<a href="#bestelnu" class="button nav-cta-button">Bestel Nu <i class="icon-chevron-right"></i></a>
+			<a href="#bestelnu" class="button nav-cta-button">Bestel Nu<i class="icon-chevron-right"></i></a>
 			
 	
 		</div>
@@ -157,16 +157,45 @@
 				  <li>Opgeleverd in 48 uur</li>		
 			  </ul>
 				<div class="cta-area">
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="page_style" value="mailofferto">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="8WA47UYMJXYRJ">
-<input type="image" src="https://mailofferto.com/images/bestelbutton.png" border="0" name="submit" alt="PayPal, de veilige en complete manier van online betalen.">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-</form>
 
+					<div id="paypal-button"></div>
 
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
 
+<script>
+    paypal.Button.render({
+
+        env: 'production', // Or 'sandbox'
+
+        client: {
+            sandbox:    'xxxxxxxxx',
+            production: 'xxxxxxxxx'
+        },
+
+        commit: true, // Show a 'Pay Now' button
+
+        payment: function(data, actions) {
+            return actions.payment.create({
+                payment: {
+                    transactions: [
+                        {
+                            amount: { total: '1.00', currency: 'USD' }
+                        }
+                    ]
+                }
+            });
+        },
+
+        onAuthorize: function(data, actions) {
+            return actions.payment.execute().then(function(payment) {
+
+                // The payment is complete!
+                // You can now show a confirmation message to the customer
+            });
+        }
+
+    }, '#paypal-button');
+</script>
 
                 </div>
 				
