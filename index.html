@@ -157,48 +157,9 @@
 				  <li>Opgeleverd in 48 uur</li>		
 			  </ul>
 				<div class="cta-area">
-
-					<div id="paypal-button"></div>
-
-<script src="https://www.paypalobjects.com/api/checkout.js"></script>
-
-<script>
-    paypal.Button.render({
-
-        env: 'production', // Or 'sandbox'
-
-        client: {
-            sandbox:    'xxxxxxxxx',
-            production: 'xxxxxxxxx'
-        },
-
-        commit: true, // Show a 'Pay Now' button
-
-        payment: function(data, actions) {
-            return actions.payment.create({
-                payment: {
-                    transactions: [
-                        {
-                            amount: { total: '1.00', currency: 'USD' }
-                        }
-                    ]
-                }
-            });
-        },
-
-        onAuthorize: function(data, actions) {
-            return actions.payment.execute().then(function(payment) {
-
-                // The payment is complete!
-                // You can now show a confirmation message to the customer
-            });
-        }
-
-    }, '#paypal-button');
-</script>
-
-                </div>
 				
+		<a href="paypal.me/mrbot"><img src="https://raw.githubusercontent.com/kizmetco/offerto/master/images/bestelbutton.png" alt="pay"></a>
+		
 			</div> <!-- end span3 -->
 
 			  <div class="span3 pricing-table-column">
